@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.dp
 import com.example.mycompose.models.Quote
 
 @Composable
-fun QouteListScreen(data:Array<Quote>,onClick:()->Unit){
+fun QouteListScreen(data:Array<Quote>,onClick:(quote: Quote)->Unit){
     Column {
         Text(
             text = "Quotes App",
@@ -23,9 +23,7 @@ fun QouteListScreen(data:Array<Quote>,onClick:()->Unit){
                 .padding(8.dp, 24.dp)
                 .fillMaxWidth(1f),
         )
-        QuoteList(data = data) {
-            onClick()
-        }
+        QuoteList(data = data,onClick)
 
         }
 

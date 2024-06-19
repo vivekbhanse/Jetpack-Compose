@@ -1,7 +1,6 @@
 package com.example.mycompose.screens
 
 import android.os.Bundle
-import android.provider.ContactsContract.Data
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -31,6 +30,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.mycompose.DataManager
+import com.example.mycompose.Pages
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -102,9 +102,16 @@ fun MessageBar(count: MutableState<Int>) {
 
 fun QouteApp(){
     if (DataManager.isDataLoaded.value){
-        QouteListScreen(data = DataManager.data) {
-            
-        }
+if (DataManager.currentPage.value==Pages.LISTING){
+    QouteListScreen(data = DataManager.data) {
+    DataManager.switchPages(it)
+    }
+}else{
+    DataManager.currentQoute?.let { QuoteDetails(quote = it) }
+
+}
+
+
     }else{
         Box( contentAlignment = Alignment.Center,
             modifier = Modifier.fillMaxSize(1f)){

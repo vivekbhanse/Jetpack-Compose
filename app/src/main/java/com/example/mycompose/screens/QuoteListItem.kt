@@ -2,6 +2,7 @@ package com.example.mycompose.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -28,11 +29,11 @@ import com.example.mycompose.models.Quote
 
 @Preview
 @Composable
-fun QuoteListItems(quote: Quote,onClick:()->Unit) {
+fun QuoteListItems(quote: Quote,onClick:(quote: Quote)->Unit) {
     Card(
         elevation = CardDefaults.cardElevation(
             defaultElevation = 10.dp,
-        ), modifier = Modifier.padding(8.dp)
+        ), modifier = Modifier.padding(8.dp).clickable { onClick(quote) }
     ) {
     Row (
         modifier = Modifier.padding(16.dp)
